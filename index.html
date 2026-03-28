@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPERADOR ALPHA | Domina tu Imperio</title>
+    <style>
+        :root {
+            --primary-neon: #00ffcc;
+            --bg-dark: #0a0a0a;
+            --text-dim: #aaa;
+            --border-glow: 0 0 15px rgba(0, 255, 204, 0.3);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            background: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Utilidades de Sistema */
+        .system-hidden {
+            display: none !important;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Secciones */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid #111;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--primary-neon);
+            text-shadow: var(--border-glow);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: 1px solid var(--primary-neon);
+            background: rgba(0, 255, 204, 0.05);
+            color: var(--primary-neon);
+            font-weight: bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--primary-neon);
+            color: #000;
+            box-shadow: var(--border-glow);
+        }
+
+        .btn-solid {
+            background: var(--primary-neon);
+            color: #000;
+        }
+        
+        .btn-solid:hover {
+            background: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        .section {
+            padding: 100px 0;
+            text-align: center;
+            border-bottom: 1px solid #111;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .text-neon { color: var(--primary-neon); }
+
+        /* Formulario de Captura */
+        .capture-box {
+            border: 1px solid #333;
+            background: #111;
+            padding: 40px;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            border: 1px solid #333;
+            color: var(--primary-neon);
+            font-family: 'Courier New', monospace;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-neon);
+            box-shadow: inset 0 0 10px rgba(0,255,204,0.1);
+        }
+
+        /* Grid de Autoridad */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .grid-item {
+            padding: 30px;
+            border: 1px solid #222;
+            background: #0d0d0d;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="system-core" class="system-hidden">
+        <module id="george-ai" status="standby" config="jarvis_protocol"></module>
+        <module id="erp-finance" status="offline"></module>
+        <module id="cyber-sec" status="monitoring"></module>
+        </div>
+
+    <header class="hero container">
+        <h1>EMPERADOR ALPHA</h1>
+        <p class="subtitle">Controla tu mente. Domina tu imperio.<br>Disciplina, poder y tecnología en una sola mentalidad.</p>
+        <a href="#unete" class="btn btn-solid">ÚNETE AL IMPERIO</a>
+    </header>
+
+    <section class="section container">
+        <h2>LA <span class="text-neon">FILOSOFÍA</span></h2>
+        <p class="subtitle" style="margin: 0 auto;">Emperador Alpha no es motivación vacía.<br>Es disciplina real. Es control mental. Es poder interno e ingeniería de vida.</p>
+    </section>
+
+    <section class="section container">
+        <h2>CÓDIGO DE OPERACIÓN</h2>
+        <div class="grid-3">
+            <div class="grid-item">
+                <h3 class="text-neon">DISCIPLINA</h3>
+                <p>Construcción de hábitos inquebrantables. La mayoría reacciona... el Alpha decide.</p>
+            </div>
+            <div class="grid-item">
+                <h3 class="text-neon">ESTOICISMO TÉCNICO</h3>
+                <p>Mentalidad enfocada en crecimiento sistemático. Sin disciplina, no hay imperio.</p>
+            </div>
+            <div class="grid-item">
+                <h3 class="text-neon">PODER DIGITAL</h3>
+                <p>Dominio de herramientas para escalar influencia, riqueza y autoridad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="unete" class="section container">
+        <div class="capture-box">
+            <h2>ACCESO AL <span class="text-neon">CÓDIGO</span></h2>
+            <p style="margin-bottom: 30px; color: var(--text-dim);">Regístrate para recibir "El Código del Emperador". Solo conocimiento táctico, cero ruido.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Sistema de captura en configuración. Datos asegurados.');">
+                <div class="input-group">
+                    <input type="text" placeholder="ID (Nombre)" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Enlace de comunicación (Email)" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">INICIAR PROTOCOLO</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section container" style="border: none;">
+        <h2>¿ESTÁS LISTO?</h2>
+        <p class="subtitle" style="margin: 0 auto 30px auto;">No todos están construidos para dominar su vida. ¿Tú sí?</p>
+        <a href="#unete" class="btn btn-solid">ENTRAR AL IMPERIO</a>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #111; color: #444; font-size: 0.8rem;">
+        &copy; 2026 EMPERADOR ALPHA. Todos los derechos reservados.<br>
+        SISTEMA OPERATIVO INDEPENDIENTE.
+    </footer>
+
+</body>
+</html>
