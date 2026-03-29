@@ -193,18 +193,16 @@
             <h2>ACCESO AL <span class="text-neon">CÓDIGO</span></h2>
             <p style="margin-bottom: 30px; color: var(--text-dim);">Regístrate para recibir "El Código del Emperador". Solo conocimiento táctico, cero ruido.</p>
             
-            <form onsubmit="event.preventDefault(); alert('Sistema de captura en configuración. Datos asegurados.');">
-                <div class="input-group">
-                    <input type="text" placeholder="ID (Nombre)" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" placeholder="Enlace de comunicación (Email)" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">INICIAR PROTOCOLO</button>
-            </form>
-        </div>
-    </section>
-
+<form name="registro-imperio" method="POST" data-netlify="true">
+    <div class="input-group">
+        <input type="text" name="nombre_usuario" placeholder="ID (Nombre)" required>
+    </div>
+    <div class="input-group">
+        <input type="email" name="email_usuario" placeholder="Enlace de comunicación (Email)" required>
+    </div>
+    <button type="submit" class="btn" style="width: 100%;">INICIAR PROTOCOLO</button>
+</form>
+            
     <section class="section container" style="border: none;">
         <h2>¿ESTÁS LISTO?</h2>
         <p class="subtitle" style="margin: 0 auto 30px auto;">No todos están construidos para dominar su vida. ¿Tú sí?</p>
