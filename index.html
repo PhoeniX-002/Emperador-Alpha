@@ -3,34 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPERADOR ALPHA | Domina tu Imperio</title>
+    <title>EMPERADOR ALPHA | Libertad y Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-neon: #00ffcc;
-            --bg-dark: #0a0a0a;
-            --text-dim: #aaa;
-            --border-glow: 0 0 15px rgba(0, 255, 204, 0.3);
+            --obsidiana: #0A0A0A;
+            --oro-mate: #B8860B;
+            --blanco-hueso: #E0E0E0;
+            --gris-piedra: #A9A9A9;
+            --negro-suave: #1A1A1A;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
-            font-family: 'Courier New', monospace;
-            background: var(--bg-dark);
-            color: #fff;
-            overflow-x: hidden;
-            line-height: 1.6;
+            background-color: var(--obsidiana);
+            color: var(--blanco-hueso);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
         }
 
-        /* Utilidades de Sistema Oculto */
-        .system-hidden { display: none !important; }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--oro-mate);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 25px;
         }
 
-        /* Secciones */
+        /* --- S1. HERO --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -38,150 +49,182 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            background: radial-gradient(circle, rgba(184,134,11,0.05) 0%, rgba(10,10,10,1) 70%);
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            color: var(--primary-neon);
-            text-shadow: var(--border-glow);
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 20px;
         }
 
-        .subtitle {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            max-width: 600px;
+        .hero p {
+            max-width: 650px;
+            font-size: 1.1rem;
+            color: var(--blanco-hueso);
             margin-bottom: 40px;
+            font-weight: 300;
         }
 
+        /* --- BOTONES --- */
         .btn {
-            padding: 15px 40px;
-            border: 1px solid var(--primary-neon);
-            background: rgba(0, 255, 204, 0.05);
-            color: var(--primary-neon);
-            font-weight: bold;
-            font-size: 1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--oro-mate);
+            color: #000;
+            padding: 18px 45px;
             text-decoration: none;
-            display: inline-block;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
-            background: var(--primary-neon);
-            color: #000;
-            box-shadow: var(--border-glow);
+            background-color: #d4a017;
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.4);
+            transform: translateY(-3px);
         }
 
-        .btn-solid {
-            background: var(--primary-neon);
-            color: #000;
-        }
+        /* --- S2. MANIFIESTO --- */
+        .section { padding: 120px 0; }
 
-        .section {
-            padding: 100px 0;
-            text-align: center;
-            border-top: 1px solid #111;
-        }
+        .manifiesto { text-align: center; }
 
-        .text-neon { color: var(--primary-neon); }
-
-        /* Formulario de Captura */
-        .capture-box {
-            border: 1px solid #333;
-            background: #111;
-            padding: 40px;
-            max-width: 500px;
+        blockquote {
+            font-size: 1.4rem;
+            color: var(--gris-piedra);
+            font-style: italic;
+            max-width: 800px;
             margin: 40px auto;
-            border-radius: 4px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
+            padding-left: 30px;
+            border-left: 3px solid var(--oro-mate);
             text-align: left;
         }
 
-        .input-group input {
+        /* --- S3. PILARES --- */
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .pilar-card {
+            padding: 40px;
+            border: 1px solid rgba(184, 134, 11, 0.1);
+            transition: 0.3s;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .pilar-card:hover {
+            border-color: var(--oro-mate);
+            transform: scale(1.02);
+        }
+
+        .pilar-card h3 { font-size: 1.2rem; margin-top: 20px; }
+
+        /* --- S4. LEAD MAGNET --- */
+        .lead-capture {
+            background-color: var(--negro-suave);
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 40px auto 0;
+        }
+
+        .form-group input {
             width: 100%;
-            padding: 15px;
-            background: #000;
-            border: 1px solid #333;
-            color: var(--primary-neon);
-            font-family: 'Courier New', monospace;
-            box-sizing: border-box;
+            padding: 18px;
+            background: transparent;
+            border: 1px solid var(--oro-mate);
+            color: var(--blanco-hueso);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
             outline: none;
         }
 
-        .input-group input:focus {
-            border-color: var(--primary-neon);
+        /* --- S5. FOOTER --- */
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid #222;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        .quote-seneca {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
         }
 
-        .grid-item {
-            padding: 30px;
-            border: 1px solid #222;
-            background: #0d0d0d;
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--gris-piedra);
         }
+
+        /* Utilidad de sistema oculto */
+        .sys-hidden { display: none; }
+
     </style>
 </head>
 <body>
 
-    <div class="system-hidden">
-        <div id="george-ai-bridge"></div>
+    <div class="sys-hidden">
+        <div id="george-core"></div>
     </div>
 
-    <header class="hero container">
-        <h1 class="glitch">EMPERADOR ALPHA</h1>
-        <p class="subtitle">CONTROL MENTAL. PODER INTERNO. DISCIPLINA.<br>No es motivación, es ingeniería de vida.</p>
-        <a href="#unete" class="btn btn-solid">ÚNETE AL IMPERIO</a>
-    </header>
+    <section class="hero container">
+        <h1>Deja de reaccionar.<br>Empieza a gobernar.</h1>
+        <p>La sabiduría de los emperadores antiguos aplicada a la libertad financiera moderna. Forja una mente inquebrantable para construir un patrimonio sólido.</p>
+        <a href="#unete" class="btn">Entrar en la Legión</a>
+    </section>
+
+    <section class="section container manifiesto">
+        <h2>El mundo quiere tu atención.<br>Nosotros queremos tu control.</h2>
+        <blockquote>
+            "La mayoría de los hombres son esclavos de dos cosas: sus emociones y sus deudas. Persiguen el dinero sin tener el carácter para sostenerlo... En Emperador Alpha, la verdadera riqueza es la capacidad de mantener la calma cuando el mercado colapsa."
+        </blockquote>
+    </section>
 
     <section class="section container">
-        <h2>FILOSOFÍA <span class="text-neon">ALPHA</span></h2>
-        <div class="grid-3">
-            <div class="grid-item">
-                <h3 class="text-neon">DISCIPLINA</h3>
-                <p>La mayoría reacciona. El Alpha decide. Construcción de hábitos de hierro.</p>
+        <div class="pilares-grid">
+            <div class="pilar-card">
+                <h3>Pilar I: La Forja Mental</h3>
+                <p>Aprende a separar lo que puedes controlar de lo que no. Elimina la ansiedad financiera y toma decisiones basadas en la lógica.</p>
             </div>
-            <div class="grid-item">
-                <h3 class="text-neon">PODER</h3>
-                <p>Dominio propio y control sobre el entorno digital y físico.</p>
+            <div class="pilar-card">
+                <h3>Pilar II: Arquitectura de Capital</h3>
+                <p>El dinero es un excelente esclavo, pero un pésimo amo. Mira el capital como una herramienta de expansión, no de consumo.</p>
             </div>
-            <div class="grid-item">
-                <h3 class="text-neon">EVOLUCIÓN</h3>
-                <p>Sistemas que aprenden y crecen. Mentalidad de ingeniería constante.</p>
+            <div class="pilar-card">
+                <h3>Pilar III: Ritual del Soberano</h3>
+                <p>Un imperio se construye en los hábitos que repites cada mañana. El control de tu tiempo es la base de tu libertad.</p>
             </div>
         </div>
     </section>
 
-    <section id="unete" class="section container">
-        <div class="capture-box">
-            <h2>RECIBE EL <span class="text-neon">CÓDIGO</span></h2>
-            <p style="margin-bottom: 30px; color: var(--text-dim);">Entra en la lista de comunicación prioritaria.</p>
+    <section id="unete" class="section lead-capture">
+        <div class="container">
+            <h2>El Código Alpha: Manual de Supervivencia Financiera</h2>
+            <p>Documento exclusivo con las 5 reglas estoicas para proteger tu capital. Gratis para quienes buscan el mando.</p>
             
-            <form name="registro-imperio" method="POST" data-netlify="true" action="/exito.html">
-                <div class="input-group">
-                    <input type="text" name="nombre_usuario" placeholder="TU IDENTIDAD (Nombre)" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" name="email_usuario" placeholder="ENLACE (Gmail)" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">INICIAR PROTOCOLO</button>
-            </form>
+            <div class="form-container">
+                <form name="registro-alpha" method="POST" data-netlify="true" action="/exito.html">
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Introduce tu Email Principal" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Descargar el Código</button>
+                </form>
+            </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 40px; color: #444; font-size: 0.8rem;">
-        &copy; 2026 EMPERADOR ALPHA. SISTEMA OPERATIVO INDEPENDIENTE.
+    <footer>
+        <div class="container">
+            <h3 class="quote-seneca">"No es que tengamos poco tiempo, es que perdemos mucho." — Séneca.</h3>
+            <p class="copyright">© 2026 EMPERADOR ALPHA. Mente en calma, imperio en marcha.</p>
+        </div>
     </footer>
 
 </body>
