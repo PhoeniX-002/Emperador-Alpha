@@ -10,7 +10,7 @@
         :root {
             --obsidiana: #050505;
             --oro-mate: #B8860B;
-            --oro-brillante: #DAA520;
+            --oro-brillante: #FFD700; /* Oro puro para mayor impacto */
             --blanco-hueso: #E0E0E0;
             --gris-piedra: #A9A9A9;
             --negro-suave: #0D0D0D;
@@ -35,7 +35,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 0; /* Capa base */
+            z-index: 1; /* Elevado para asegurar visibilidad */
             pointer-events: none;
         }
 
@@ -62,13 +62,12 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, rgba(184,134,11,0.03) 0%, rgba(5,5,5,0) 70%);
         }
 
         .hero h1 {
             font-size: clamp(2.2rem, 6vw, 4.2rem);
             margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(0,0,0,0.5);
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
 
         .hero p {
@@ -97,7 +96,7 @@
 
         .btn:hover {
             background-color: var(--oro-brillante);
-            box-shadow: 0 0 30px rgba(184, 134, 11, 0.6);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
             transform: translateY(-3px);
         }
 
@@ -110,11 +109,11 @@
             font-style: italic;
             max-width: 800px;
             margin: 40px auto;
-            padding-left: 30px;
+            padding: 30px;
             border-left: 3px solid var(--oro-mate);
             text-align: left;
-            background: rgba(13,13,13,0.5);
-            padding: 30px;
+            background: rgba(13,13,13,0.7);
+            backdrop-filter: blur(5px);
         }
 
         /* --- S3. PILARES --- */
@@ -127,23 +126,22 @@
 
         .pilar-card {
             padding: 40px;
-            border: 1px solid rgba(184, 134, 11, 0.15);
+            border: 1px solid rgba(184, 134, 11, 0.3);
             transition: 0.3s;
-            background: rgba(13, 13, 13, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         .pilar-card:hover {
-            border-color: var(--oro-mate);
+            border-color: var(--oro-brillante);
             transform: translateY(-5px);
-            background: rgba(20, 20, 20, 0.9);
         }
 
         /* --- S4. LEAD MAGNET --- */
         .lead-capture {
             background-color: var(--negro-suave);
             text-align: center;
-            border-top: 1px solid rgba(184, 134, 11, 0.2);
+            border-top: 1px solid rgba(184, 134, 11, 0.3);
         }
 
         .form-container {
@@ -154,36 +152,24 @@
         .form-group input {
             width: 100%;
             padding: 18px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             border: 1px solid var(--oro-mate);
             color: var(--blanco-hueso);
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 20px;
             outline: none;
-            transition: 0.3s;
         }
 
-        .form-group input:focus {
-            box-shadow: 0 0 10px rgba(184,134,11,0.3);
-        }
-
-        /* --- FOOTER --- */
         footer {
             padding: 80px 0;
             text-align: center;
             border-top: 1px solid #222;
         }
-
-        .sys-hidden { display: none; }
     </style>
 </head>
 <body>
 
     <canvas id="canvas-inmersion"></canvas>
-
-    <div class="sys-hidden">
-        <div id="george-bridge"></div>
-    </div>
 
     <header class="hero container">
         <h1>Deja de reaccionar.<br>Empieza a gobernar.</h1>
@@ -233,7 +219,7 @@
 
     <footer>
         <div class="container">
-            <p class="quote-seneca" style="color: var(--oro-mate); font-family: 'Cinzel'; font-size: 1.1rem;">"No es que tengamos poco tiempo, es que perdemos mucho." — Séneca.</p>
+            <p style="color: var(--oro-mate); font-family: 'Cinzel'; font-size: 1.1rem;">"No es que tengamos poco tiempo, es que perdemos mucho." — Séneca.</p>
             <p style="font-size: 0.8rem; color: var(--gris-piedra);">© 2026 EMPERADOR ALPHA. Mente en calma, imperio en marcha.</p>
         </div>
     </footer>
@@ -242,40 +228,45 @@
         const canvas = document.getElementById('canvas-inmersion');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 100; // Densidad ideal
+        const particleCount = 80;
 
         function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            init();
         }
 
         window.addEventListener('resize', resize);
         resize();
 
         class Particle {
-            constructor() { this.reset(); }
-            reset() {
+            constructor() { this.reset(true); }
+            reset(init = false) {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.5 + 1; // Tamaño notable
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
-                // Opacidad alta para resaltar contra el fondo
-                this.opacity = Math.random() * 0.5 + 0.3; 
+                this.y = init ? Math.random() * canvas.height : canvas.height + 20;
+                this.size = Math.random() * 3.5 + 1.5;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.speedY = Math.random() * -0.8 - 0.2;
+                this.opacity = Math.random() * 0.4 + 0.5; // Opacidad mínima del 50%
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.reset();
+                if (this.y < -20) this.reset();
             }
             draw() {
-                ctx.shadowBlur = 8;
-                ctx.shadowColor = "#B8860B"; // Glow dorado
-                ctx.fillStyle = `rgba(218, 165, 32, ${this.opacity})`;
+                // Brillo Intenso (Glow)
+                ctx.globalCompositeOperation = 'lighter';
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = "rgba(255, 215, 0, 0.8)";
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.shadowBlur = 0; // Optimización de rendimiento
+                
+                ctx.shadowBlur = 0;
+                ctx.globalCompositeOperation = 'source-over';
             }
         }
 
@@ -285,7 +276,10 @@
         }
 
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Limpieza con rastro sutil para suavidad
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
             particles.forEach(p => {
                 p.update();
                 p.draw();
@@ -293,7 +287,6 @@
             requestAnimationFrame(animate);
         }
 
-        init();
         animate();
     </script>
 </body>
