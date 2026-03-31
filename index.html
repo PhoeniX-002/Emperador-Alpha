@@ -21,12 +21,14 @@
         }
 
         body {
-            margin: 0;
-            background-color: var(--obsidiana);
-            color: var(--blanco-hueso);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.8;
-        }
+                margin: 0;
+                /* Fondo con un degradado sutil para dar profundidad tras las partículas */
+                background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+                color: var(--blanco-hueso);
+                font-family: 'Montserrat', sans-serif;
+                line-height: 1.8;
+                overflow-x: hidden;
+            }
 
         h1, h2, h3 {
             font-family: 'Cinzel', serif;
@@ -226,6 +228,68 @@
             <p class="copyright">© 2026 EMPERADOR ALPHA. Mente en calma, imperio en marcha.</p>
         </div>
     </footer>
+<canvas id="canvas-inmersion" style="position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none;"></canvas>
 
+<script>
+const canvas = document.getElementById('canvas-inmersion');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+const particleCount = 60; // Cantidad de "oro" en pantalla
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+class Particle {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+        this.opacity = Math.random() * 0.5;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) {
+            this.reset();
+        }
+    }
+    draw() {
+        ctx.fillStyle = `rgba(184, 134, 11, ${this.opacity})`; // Color Oro Mate
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function init() {
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    requestAnimationFrame(animate);
+}
+
+init();
+animate();
+</script>
+    
 </body>
 </html>
