@@ -2,21 +2,48 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>SISTEMA ACTUALIZADO | EMPERADOR ALPHA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Montserrat&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a la Legión | EMPERADOR ALPHA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <style>
-        body { background: #0A0A0A; color: #E0E0E0; font-family: 'Montserrat', sans-serif; display: flex; height: 100vh; align-items: center; justify-content: center; text-align: center; margin: 0; }
-        .box { border: 1px solid #B8860B; padding: 60px; background: rgba(184,134,11,0.02); }
-        h1 { font-family: 'Cinzel', serif; color: #B8860B; letter-spacing: 4px; }
-        a { color: #B8860B; text-decoration: none; border-bottom: 1px solid #B8860B; margin-top: 30px; display: inline-block; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        body {
+            margin: 0;
+            background-color: #050505;
+            color: #E0E0E0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .success-card {
+            padding: 40px;
+            border: 1px solid #B8860B;
+            background: rgba(13, 13, 13, 0.9);
+            max-width: 500px;
+        }
+        h1 { font-family: 'Cinzel', serif; color: #B8860B; letter-spacing: 3px; }
+        .btn-back {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            border: 1px solid #B8860B;
+            color: #B8860B;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-back:hover { background: #B8860B; color: #000; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>ACCESO CONCEDIDO</h1>
-        <p>El Código Alpha ha sido enviado a tu enlace de comunicación.</p>
-        <p>Prepárate para la ejecución.</p>
-        <a href="/">Volver al Cuartel General</a>
+    <div class="success-card">
+        <h1>Iniciación Completada</h1>
+        <p>Has dado el primer paso hacia el control absoluto de tu capital y tu mente.</p>
+        <p>Revisa tu bandeja de entrada en unos minutos.</p>
+        <a href="/" class="btn-back">Volver al Inicio</a>
     </div>
 </body>
 </html>
