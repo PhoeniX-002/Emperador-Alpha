@@ -32,11 +32,9 @@
             left: 0;
             z-index: 1;
             pointer-events: none;
-            /* Optimización de hardware */
             transform: translateZ(0); 
         }
 
-        /* --- TÍTULOS OPTIMIZADOS (Sin gradientes pesados) --- */
         h1, h2, h3 {
             font-family: 'Cinzel', serif;
             color: var(--oro-mate);
@@ -63,7 +61,7 @@
 
         .hero h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); margin-bottom: 20px; }
 
-        /* REVELACIÓN SUAVE (Hardware Accelerated) */
+        /* REVELACIÓN CORREGIDA */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -88,6 +86,7 @@
             transition: 0.3s;
             border: none;
             cursor: pointer;
+            display: inline-block;
         }
 
         .btn:hover {
@@ -119,7 +118,12 @@
             background: rgba(10, 10, 10, 0.7);
         }
 
-        .lead-capture { background-color: var(--negro-suave); text-align: center; }
+        /* AJUSTE PARA EL FORMULARIO INVISIBLE */
+        .lead-capture { 
+            background-color: var(--negro-suave); 
+            text-align: center; 
+            min-height: 400px; /* Asegura espacio para ser detectado */
+        }
 
         .form-container { max-width: 450px; margin: 30px auto 0; }
 
@@ -130,6 +134,7 @@
             border: 1px solid var(--oro-mate);
             color: #fff;
             margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         footer { padding: 60px 0; text-align: center; border-top: 1px solid #111; }
@@ -173,7 +178,7 @@
         <div class="container">
             <h2>El Código Alpha</h2>
             <div class="form-container">
-                <form name="registro-alpha" method="POST" data-netlify="true" action="/exito.html">
+                <form name="registro-alpha" method="POST" data-netlify="true">
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Email Principal" required>
                     </div>
@@ -188,11 +193,11 @@
     </footer>
 
     <script>
-        // --- MOTOR OPTIMIZADO (LITE) ---
+        // --- MOTOR OPTIMIZADO ---
         const canvas = document.getElementById('canvas-inmersion');
-        const ctx = canvas.getContext('2d', { alpha: false }); // Optimización: canvas opaco
+        const ctx = canvas.getContext('2d', { alpha: false });
         let particles = [];
-        const particleCount = 45; // Menos partículas = más velocidad
+        const particleCount = 45;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -216,7 +221,6 @@
                 if (this.y < -10) this.reset();
             }
             draw() {
-                // Usamos fillStyle simple en lugar de sombras para CPU
                 ctx.fillStyle = `rgba(184, 134, 11, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -230,10 +234,8 @@
         }
 
         function animate() {
-            // Limpieza básica
             ctx.fillStyle = '#050505';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
             for(let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
@@ -241,25 +243,26 @@
             requestAnimationFrame(animate);
         }
 
-        // --- SCROLL REVEAL OPTIMIZADO ---
-        let scrollTimeout;
-        function reveal() {
-            if (scrollTimeout) return;
-            scrollTimeout = setTimeout(() => {
-                const reveals = document.querySelectorAll(".reveal");
-                const trigger = window.innerHeight * 0.85;
-                reveals.forEach(el => {
-                    if (el.getBoundingClientRect().top < trigger) el.classList.add("active");
-                });
-                scrollTimeout = null;
-            }, 50); // Throttling para no saturar el scroll
-        }
+        // --- REVELACIÓN MEJORADA (Intersection Observer) ---
+        // Esta es la forma más moderna y eficiente de activar elementos al hacer scroll
+        const observerOptions = {
+            threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+        };
 
-        window.addEventListener("scroll", reveal, { passive: true });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
 
         resize();
         animate();
-        reveal();
     </script>
 </body>
 </html>
