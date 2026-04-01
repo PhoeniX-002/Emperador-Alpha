@@ -10,7 +10,7 @@
         :root {
             --obsidiana: #050505;
             --oro-mate: #B8860B;
-            --oro-brillante: #FFD700; /* Oro puro para mayor impacto */
+            --oro-brillante: #FFD700;
             --blanco-hueso: #E0E0E0;
             --gris-piedra: #A9A9A9;
             --negro-suave: #0D0D0D;
@@ -30,20 +30,33 @@
             overflow-x: hidden;
         }
 
-        /* Capa del Canvas de Inmersión */
         #canvas-inmersion {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1; /* Elevado para asegurar visibilidad */
+            z-index: 1;
             pointer-events: none;
         }
 
+        /* --- EFECTO BARRIDO DE LUZ EN TÍTULOS --- */
         h1, h2, h3 {
             font-family: 'Cinzel', serif;
             color: var(--oro-mate);
             text-transform: uppercase;
             letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, #B8860B, #FFD700, #B8860B);
+            background-repeat: no-repeat;
+            background-size: 80% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: rgba(184, 134, 11, 0.5); /* Color base */
+            animation: shine 4s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { background-position: -200%; }
+            100% { background-position: 200%; }
         }
 
         .container {
@@ -51,7 +64,7 @@
             margin: 0 auto;
             padding: 0 25px;
             position: relative;
-            z-index: 2; /* Por encima de las partículas */
+            z-index: 2;
         }
 
         /* --- S1. HERO --- */
@@ -67,18 +80,21 @@
         .hero h1 {
             font-size: clamp(2.2rem, 6vw, 4.2rem);
             margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+            -webkit-text-fill-color: var(--oro-mate); /* Hero se mantiene sólido */
         }
 
-        .hero p {
-            max-width: 650px;
-            font-size: 1.1rem;
-            color: var(--blanco-hueso);
-            margin-bottom: 40px;
-            font-weight: 300;
+        /* --- MICRO-INTERACCIONES (REVELACIÓN) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
         }
 
-        /* --- BOTONES --- */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .btn {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--oro-mate);
@@ -100,7 +116,6 @@
             transform: translateY(-3px);
         }
 
-        /* --- S2. MANIFIESTO --- */
         .section { padding: 120px 0; }
 
         blockquote {
@@ -111,12 +126,10 @@
             margin: 40px auto;
             padding: 30px;
             border-left: 3px solid var(--oro-mate);
-            text-align: left;
             background: rgba(13,13,13,0.7);
             backdrop-filter: blur(5px);
         }
 
-        /* --- S3. PILARES --- */
         .pilares-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -127,17 +140,16 @@
         .pilar-card {
             padding: 40px;
             border: 1px solid rgba(184, 134, 11, 0.3);
-            transition: 0.3s;
+            transition: 0.4s;
             background: rgba(13, 13, 13, 0.8);
             backdrop-filter: blur(10px);
         }
 
         .pilar-card:hover {
             border-color: var(--oro-brillante);
-            transform: translateY(-5px);
+            background: rgba(20, 20, 20, 0.9);
         }
 
-        /* --- S4. LEAD MAGNET --- */
         .lead-capture {
             background-color: var(--negro-suave);
             text-align: center;
@@ -155,7 +167,6 @@
             background: rgba(0,0,0,0.9);
             border: 1px solid var(--oro-mate);
             color: var(--blanco-hueso);
-            font-family: 'Montserrat', sans-serif;
             margin-bottom: 20px;
             outline: none;
         }
@@ -173,39 +184,37 @@
 
     <header class="hero container">
         <h1>Deja de reaccionar.<br>Empieza a gobernar.</h1>
-        <p>La sabiduría de los emperadores antiguos aplicada a la libertad financiera moderna. Forja una mente inquebrantable.</p>
+        <p>La sabiduría de los emperadores antiguos aplicada a la libertad financiera moderna.</p>
         <a href="#unete" class="btn">Entrar en la Legión</a>
     </header>
 
-    <section class="section container">
+    <section class="section container reveal">
         <h2 style="text-align: center;">El mundo quiere tu atención.<br>Nosotros queremos tu control.</h2>
-        <blockquote>
-            "La mayoría de los hombres son esclavos de sus emociones y sus deudas. En Emperador Alpha, creemos que la verdadera riqueza es la capacidad de mantener la calma cuando el mercado colapsa."
+        <blockquote class="reveal">
+            "La mayoría de los hombres son esclavos de sus emociones y sus deudas. En Emperador Alpha, creemos que la riqueza es la capacidad de mantener la calma."
         </blockquote>
     </section>
 
     <section class="section container">
         <div class="pilares-grid">
-            <div class="pilar-card">
+            <div class="pilar-card reveal">
                 <h3>Pilar I: La Forja Mental</h3>
-                <p>Aprende a separar lo que puedes controlar de lo que no. Toma decisiones basadas en la lógica.</p>
+                <p>Aprende a separar lo que puedes controlar de lo que no. Decisiones lógicas.</p>
             </div>
-            <div class="pilar-card">
+            <div class="pilar-card reveal">
                 <h3>Pilar II: Arquitectura de Capital</h3>
-                <p>El dinero es un excelente esclavo, pero un pésimo amo. Te enseñamos a usarlo como herramienta.</p>
+                <p>El dinero es un excelente esclavo, pero un pésimo amo.</p>
             </div>
-            <div class="pilar-card">
+            <div class="pilar-card reveal">
                 <h3>Pilar III: Ritual del Soberano</h3>
-                <p>Un imperio se construye en los hábitos que repites cada mañana. El tiempo es tu mayor activo.</p>
+                <p>Un imperio se construye en los hábitos que repites cada mañana.</p>
             </div>
         </div>
     </section>
 
-    <section id="unete" class="section lead-capture">
+    <section id="unete" class="section lead-capture reveal">
         <div class="container">
             <h2>El Código Alpha: Manual de Supervivencia</h2>
-            <p>Las 5 reglas estoicas para proteger tu capital. Gratis para quienes buscan el mando.</p>
-            
             <div class="form-container">
                 <form name="registro-alpha" method="POST" data-netlify="true" action="/exito.html">
                     <div class="form-group">
@@ -220,15 +229,15 @@
     <footer>
         <div class="container">
             <p style="color: var(--oro-mate); font-family: 'Cinzel'; font-size: 1.1rem;">"No es que tengamos poco tiempo, es que perdemos mucho." — Séneca.</p>
-            <p style="font-size: 0.8rem; color: var(--gris-piedra);">© 2026 EMPERADOR ALPHA. Mente en calma, imperio en marcha.</p>
         </div>
     </footer>
 
     <script>
+        // --- MOTOR VISUAL DE ORO LÍQUIDO (REPARADO) ---
         const canvas = document.getElementById('canvas-inmersion');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 80;
+        const particleCount = 85;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -237,17 +246,16 @@
         }
 
         window.addEventListener('resize', resize);
-        resize();
 
         class Particle {
             constructor() { this.reset(true); }
             reset(init = false) {
                 this.x = Math.random() * canvas.width;
                 this.y = init ? Math.random() * canvas.height : canvas.height + 20;
-                this.size = Math.random() * 3.5 + 1.5;
-                this.speedX = Math.random() * 0.6 - 0.3;
-                this.speedY = Math.random() * -0.8 - 0.2;
-                this.opacity = Math.random() * 0.4 + 0.5; // Opacidad mínima del 50%
+                this.size = Math.random() * 3 + 1.2;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * -0.6 - 0.1;
+                this.opacity = Math.random() * 0.4 + 0.5;
             }
             update() {
                 this.x += this.speedX;
@@ -255,16 +263,13 @@
                 if (this.y < -20) this.reset();
             }
             draw() {
-                // Brillo Intenso (Glow)
                 ctx.globalCompositeOperation = 'lighter';
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = "rgba(255, 215, 0, 0.8)";
-                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
-                
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = "rgba(255, 215, 0, 0.6)";
+                ctx.fillStyle = `rgba(218, 165, 32, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
-                
                 ctx.shadowBlur = 0;
                 ctx.globalCompositeOperation = 'source-over';
             }
@@ -276,10 +281,8 @@
         }
 
         function animate() {
-            // Limpieza con rastro sutil para suavidad
-            ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+            // Limpieza total periódica para evitar el "desvanecimiento" que reportaste
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.update();
                 p.draw();
@@ -287,7 +290,24 @@
             requestAnimationFrame(animate);
         }
 
+        // --- INTERACCIONES DE SCROLL ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        resize();
         animate();
+        reveal(); // Ejecutar una vez al inicio
     </script>
 </body>
 </html>
