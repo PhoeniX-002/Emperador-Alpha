@@ -23,6 +23,7 @@
             color: var(--blanco-hueso);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         #canvas-inmersion {
@@ -45,7 +46,7 @@
             margin: 0 auto;
             padding: 0 25px;
             position: relative;
-            z-index: 10; /* Aseguramos que el contenido esté siempre arriba */
+            z-index: 10;
         }
 
         .hero {
@@ -59,17 +60,16 @@
 
         .hero h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); margin-bottom: 20px; }
 
-        /* --- SISTEMA DE REVELACIÓN REFORZADO --- */
+        /* REVELACIÓN */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        /* Si el JS no carga o tarda, esta clase asegura visibilidad */
-        .reveal.active, .no-js .reveal {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .btn {
@@ -81,7 +81,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: 0.3s;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
             display: inline-block;
@@ -91,43 +91,71 @@
 
         .btn:hover {
             background-color: var(--oro-brillante);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            transform: scale(1.02);
         }
 
-        .section { padding: 100px 0; position: relative; z-index: 10; }
+        .section { padding: 120px 0; position: relative; z-index: 10; }
 
         blockquote {
             font-size: 1.3rem;
             max-width: 800px;
             margin: 40px auto;
-            padding: 30px;
+            padding: 40px;
             border-left: 3px solid var(--oro-mate);
-            background: rgba(20,20,20,0.6);
+            background: rgba(15, 15, 15, 0.8);
+            font-style: italic;
         }
 
+        /* PILARES CON EFECTO DORADO RECUPERADO */
         .pilares-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 60px;
         }
 
         .pilar-card {
-            padding: 30px;
-            border: 1px solid rgba(184, 134, 11, 0.2);
-            background: rgba(10, 10, 10, 0.8);
+            padding: 40px;
+            border: 1px solid rgba(184, 134, 11, 0.15);
+            background: rgba(10, 10, 10, 0.85);
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
         }
 
-        /* --- FORMULARIO CORREGIDO --- */
+        /* La línea dorada inferior que pediste */
+        .pilar-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--oro-mate);
+            transition: width 0.5s ease;
+        }
+
+        .pilar-card:hover {
+            border-color: rgba(184, 134, 11, 0.5);
+            transform: translateY(-8px);
+            background: rgba(20, 20, 20, 0.95);
+        }
+
+        .pilar-card:hover::after {
+            width: 100%;
+        }
+
+        /* REGISTRO */
         .lead-capture { 
             background-color: var(--negro-suave); 
             text-align: center; 
-            padding: 120px 0;
+            padding: 140px 0;
             border-top: 1px solid #1a1a1a;
         }
 
         .form-container { 
-            max-width: 450px; 
+            max-width: 480px; 
             margin: 40px auto 0;
             position: relative;
             z-index: 30;
@@ -135,16 +163,23 @@
 
         .form-group input {
             width: 100%;
-            padding: 18px;
+            padding: 20px;
             background: #000;
-            border: 1px solid var(--oro-mate);
+            border: 1px solid rgba(184, 134, 11, 0.4);
             color: #fff;
             margin-bottom: 20px;
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
+            transition: 0.3s;
         }
 
-        footer { padding: 60px 0; text-align: center; border-top: 1px solid #111; }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--oro-brillante);
+            background: #080808;
+        }
+
+        footer { padding: 80px 0; text-align: center; border-top: 1px solid #111; opacity: 0.6; }
     </style>
 </head>
 <body>
@@ -153,14 +188,14 @@
 
     <header class="hero container">
         <h1 class="reveal active">Deja de reaccionar.<br>Empieza a gobernar.</h1>
-        <p class="reveal active">Sabiduría antigua para el control financiero moderno.</p>
+        <p class="reveal active" style="font-size: 1.2rem; max-width: 600px;">Sabiduría antigua para el dominio del capital moderno.</p>
         <a href="#unete" class="btn reveal active">Entrar en la Legión</a>
     </header>
 
     <section class="section container">
-        <h2 style="text-align: center;" class="reveal">Control vs Caos</h2>
+        <h2 style="text-align: center;" class="reveal">El Orden sobre el Caos</h2>
         <blockquote class="reveal">
-            "La riqueza es la capacidad de mantener la calma cuando otros entran en pánico."
+            "No es que tengamos poco tiempo, es que perdemos mucho. La verdadera riqueza es ser dueño de tus horas."
         </blockquote>
     </section>
 
@@ -168,44 +203,43 @@
         <div class="pilares-grid">
             <div class="pilar-card reveal">
                 <h3>I. Forja Mental</h3>
-                <p>Domina tus impulsos antes que ellos te dominen a ti.</p>
+                <p>El dominio de uno mismo es el primer peldaño del trono. Sin disciplina, el éxito es solo suerte temporal.</p>
             </div>
             <div class="pilar-card reveal">
-                <h3>II. Capital</h3>
-                <p>Aprende a construir activos que trabajen por tu libertad.</p>
+                <h3>II. Capital Alpha</h3>
+                <p>Construye activos que no dependan de tu presencia física. El dinero debe ser tu servidor, no tu amo.</p>
             </div>
             <div class="pilar-card reveal">
-                <h3>III. Disciplina</h3>
-                <p>El hábito es el cimiento de cualquier imperio personal.</p>
+                <h3>III. La Legión</h3>
+                <p>Un entorno de alto valor es el cimiento de cualquier imperio. Rodéate de quienes exigen tu mejor versión.</p>
             </div>
         </div>
     </section>
 
     <section id="unete" class="section lead-capture">
         <div class="container reveal">
-            <h2>El Código Alpha</h2>
-            <p>Obtén las reglas para proteger tu imperio.</p>
+            <h2>Accede al Código Alpha</h2>
+            <p>El camino es difícil, pero la recompensa es la libertad absoluta.</p>
             <div class="form-container">
-                <form name="registro-alpha" method="POST" data-netlify="true">
+                <form name="registro-alpha" method="POST" data-netlify="true" action="/exito.html">
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email Principal" required>
+                        <input type="email" name="email" placeholder="Tu Email de Inversor" required>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%;">Obtener Acceso</button>
+                    <button type="submit" class="btn" style="width: 100%;">Reclamar mi Lugar</button>
                 </form>
             </div>
         </div>
     </section>
 
     <footer>
-        <p style="color: var(--oro-mate); font-family: 'Cinzel';">© 2026 EMPERADOR ALPHA</p>
+        <p style="color: var(--oro-mate); font-family: 'Cinzel'; letter-spacing: 2px;">© 2026 EMPERADOR ALPHA • MENTALIDAD DE ACERO</p>
     </footer>
 
     <script>
-        // --- MOTOR VISUAL ---
         const canvas = document.getElementById('canvas-inmersion');
         const ctx = canvas.getContext('2d', { alpha: false });
         let particles = [];
-        const particleCount = 40;
+        const particleCount = 45;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -219,9 +253,9 @@
             reset(init = false) {
                 this.x = Math.random() * canvas.width;
                 this.y = init ? Math.random() * canvas.height : canvas.height + 10;
-                this.size = Math.random() * 2 + 1;
-                this.speedY = Math.random() * -0.5 - 0.2;
-                this.opacity = Math.random() * 0.4 + 0.2;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = Math.random() * -0.4 - 0.1;
+                this.opacity = Math.random() * 0.3 + 0.15;
             }
             update() {
                 this.y += this.speedY;
@@ -250,14 +284,13 @@
             requestAnimationFrame(animate);
         }
 
-        // --- OBSERVER REPARADO ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.05 }); // Mucho más sensible
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
